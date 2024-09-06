@@ -35,4 +35,32 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("notifikasiSisaKarakter").style.visibility =
       "hidden";
   });
+
+  document
+    .getElementById("inputCaptcha")
+    .addEventListener("change", function () {
+      console.log("inputChaptcha: change");
+      const inputCaptcha = document.getElementById("inputCaptcha").value;
+      const submitButtonStatus = document.getElementById("submitButton");
+
+      if (inputCaptcha === "PRNU") {
+        submitButtonStatus.removeAttribute("disabled");
+      } else {
+        submitButtonStatus.setAttribute("disabled", "");
+      }
+    });
+
+  document
+    .getElementById("formDataDiri")
+    .addEventListener("submit", function (event) {
+      const inputCaptcha = document.getElementById("inputCaptcha").value;
+
+      if (inputCaptcha === "PRNU") {
+        alert("Selamat! Captcha Anda lolos :D");
+      } else {
+        alert("Captcha Anda belum tepat :(");
+        document.getElementById("submitButton").setAttribute("disabled", "");
+      }
+      event.preventDefault();
+    });
 });
